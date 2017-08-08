@@ -17,7 +17,7 @@ I work to a Motor Trend, a magazine about the automobile industry. In this study
 
 "Quantify the MPG difference between automatic and manual transmissions"
 
-The results of this study verify that the manual transmission should be better than automatic transmission for mpg if we consider only these element(transmission). 
+The results of this study verify that the manual transmission should be better than automatic transmission for mpg if we consider only these element(transmission). However when we look for other variables like Weight it is possible to observe that  a car with manual transmission will have 0.0236 less miles per galleon than a similar car with automatic transmission. 
 
 ## Data Processing
 
@@ -154,5 +154,15 @@ coef3 = summary(fit3)$coef
 coef3
 ```
 
+
+```{r}
+transmission_ci <- coef3[2, 1] + c(-1, 1) * qt(.975, df = fit3$df) * coef3[2, 2]
+transmission_ci
+```
+
+The coefficient for the transmission variable has an estimated value of -0.0236, meaning that a car with manual transmission will have 0.0236 less miles per galleon than a similar car with automatic transmission. The 95% confidence interval for this coefficient is rather large compared to its estimated value, namely (-3.1848, 3.1376). To provide a basis for comparison, an increase in weight of 1000 lbs would lower the MPG by an average of 5.3528.
+
 ## Conclusion
+
+The large width of the confidence interval means that the estimated difference between the cars with manual and automatic transmission should not be taken at face value and a more detailed analysis is necessary.
 

@@ -128,7 +128,7 @@ $(document).ready(function () {
 <p>I work to a Motor Trend, a magazine about the automobile industry. In this study I show the relationship of Miles per Gallon (MPG) to 10 aspects of automobile design. The main objective is to anwser the two questions below:</p>
 <p>“Is an automatic or manual transmission better for MPG”</p>
 <p>“Quantify the MPG difference between automatic and manual transmissions”</p>
-<p>The results of this study verify that the manual transmission should be better than automatic transmission for mpg if we consider only these element(transmission).</p>
+<p>The results of this study verify that the manual transmission should be better than automatic transmission for mpg if we consider only these element(transmission). However when we look for other variables like Weight it is possible to observe that a car with manual transmission will have 0.0236 less miles per galleon than a similar car with automatic transmission.</p>
 </div>
 <div id="data-processing" class="section level2">
 <h2>Data Processing</h2>
@@ -244,10 +244,14 @@ coef3</code></pre>
 ## (Intercept) 37.32155131  3.0546385 12.21799285 5.843477e-13
 ## amManual    -0.02361522  1.5456453 -0.01527855 9.879146e-01
 ## wt          -5.35281145  0.7882438 -6.79080719 1.867415e-07</code></pre>
+<pre class="r"><code>transmission_ci &lt;- coef3[2, 1] + c(-1, 1) * qt(.975, df = fit3$df) * coef3[2, 2]
+transmission_ci</code></pre>
+<pre><code>## [1] -3.184815  3.137584</code></pre>
 <p>The coefficient for the transmission variable has an estimated value of -0.0236, meaning that a car with manual transmission will have 0.0236 less miles per galleon than a similar car with automatic transmission. The 95% confidence interval for this coefficient is rather large compared to its estimated value, namely (-3.1848, 3.1376). To provide a basis for comparison, an increase in weight of 1000 lbs would lower the MPG by an average of 5.3528.</p>
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
+<p>The large width of the confidence interval means that the estimated difference between the cars with manual and automatic transmission should not be taken at face value and a more detailed analysis is necessary.</p>
 </div>
 
 
